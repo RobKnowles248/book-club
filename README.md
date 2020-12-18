@@ -1,12 +1,21 @@
 # Book Club
 
 A book review website where user's can write and share reviews for specific books.
+
+Created for my Code Institute Backend Development Milestone Project.
+
+A link to the live site can be found [here]().
  
 ## UX
  
 ### Primary Goals
 
+To create a site where user's can easily write, share and read book reviews and find new books they want to read.
+
 ### Developer Goals
+
+- To gain experience using Flask and MongoDB to create a full stack site backed by a well designed database.
+- To create a site where I will be able to find new good books to read.
 
 ### User Stories
 
