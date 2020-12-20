@@ -1,0 +1,11 @@
+.sidenav li h4 {
+    margin-left: 10px;
+}
+
+/*--------------------- Media Queries */
+
+@media screen and (min-width: 992px) {
+    .brand-logo {
+        margin-left: 20px;
+    }
+}
