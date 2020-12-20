@@ -19,6 +19,25 @@ To create a site where user's can easily write, share and read book reviews and 
 
 ### User Stories
 
+As a reviewer I want:
+
+- An intuitive way to either register a new account or log into my existing account.
+- An intuitive form for writing my review so I can easily write a new review including:
+    - Star system to score my review out of 5.
+    - Large text area to write up my review.
+- A profile area where I can view the reviews I have written.
+- A way to edit the reviews I have written so I can change them if I notice mistakes or change my mind about something.
+- A way to delete reviews I no longer want to be on the website.
+
+As a user (looking to buy a book) I want:
+
+- A home page that displays the most recent reviews on the page so I can quickly see some reviews.
+- A page where all the reviews are shown so I can see all the reviews.
+- A search bar where I can search for reviews for a specific book I want to read.
+- An intuitive layout for the page for each review so I can easily gain all the information I need.
+- A way to upvote reviews I think were good so that other users can have an idea of which reviews are good.
+- A link from each review to purchase the book so that I can easily buy the book if I decide I want to.
+
 ### Wireframes
 
 ## Features
