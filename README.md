@@ -40,6 +40,9 @@ As a user (looking to buy a book) I want:
 
 ### Wireframes
 
+- [Home Page](static/wireframes/home-page.pdf)
+- [Book Page](static/wireframes/book-page.pdf)
+
 ## Features
  
 ### Existing Features
