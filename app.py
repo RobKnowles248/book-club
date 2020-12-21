@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -26,6 +27,29 @@ def index():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
+    # code for this method adapted from code for the
+    # register method in the task manager mini project.
+    if request.method == "POST":
+        # first check if the username already exists in the db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists!")
+            return redirect(url_for("signup"))
+
+        signup = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "email": request.form.get("email").lower()
+        }
+        mongo.db.users.insert_one(signup)
+
+        # put the new user into the 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Signup Successful!")
+        return redirect(url_for("index"))
+
     return render_template("signup.html")
 
 
