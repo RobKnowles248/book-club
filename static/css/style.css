@@ -1,5 +1,21 @@
+/*--------------------- Base Template Styles */
+
 .sidenav li h4 {
     margin-left: 10px;
+}
+
+html {
+    background: url("../images/bookshelf.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+main {
+    min-height: calc(100vh - 64px);
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.2);
 }
 
 /*--------------------- Media Queries */
