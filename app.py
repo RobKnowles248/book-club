@@ -62,6 +62,34 @@ def signup():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    # code for this method adapted from code for the
+    # login method in the task manager mini project.
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # check if hashed password matches the one in db
+            password_check = check_password_hash(
+                existing_user["password"], request.form.get("password"))
+
+            if password_check:
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for("index"))
+
+            else:
+                # password did not match
+                flash("Incorrect Username and/or Password!")
+                return redirect(url_for("login"))
+
+        else:
+            # username not found
+            flash("Incorrect Username and/or Password!")
+            return redirect(url_for("login"))
+
     return render_template("login.html")
 
 
