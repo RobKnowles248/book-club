@@ -18,6 +18,10 @@ main {
     background-color: rgba(245, 245, 245, 0.2);
 }
 
+.flashes h4 {
+    line-height: 2;
+}
+
 /*--------------------- Media Queries */
 
 @media screen and (min-width: 992px) {
