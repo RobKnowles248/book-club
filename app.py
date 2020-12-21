@@ -43,6 +43,13 @@ def signup():
             "password": generate_password_hash(request.form.get("password")),
             "email": request.form.get("email").lower()
         }
+
+        # check if passwords match
+        confirm = request.form.get("confirm-password")
+        if confirm != signup["password"]:
+            flash("Passwords do not match")
+            return redirect(url_for("signup"))
+
         mongo.db.users.insert_one(signup)
 
         # put the new user into the 'session' cookie

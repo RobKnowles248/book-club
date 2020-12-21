@@ -2,7 +2,7 @@
 {% block content %}
     <!-- the structure of this signup form is based on the form used in the task manager mini project -->
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('signup') }}">
+        <form class="col s12 m8 offset-m2" onsubmit="return signupValidate()" method="POST" action="{{ url_for('signup') }}">
             <div class="card-panel">
                 <!-- username -->
                 <div class="row">
@@ -53,5 +53,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='js/confirm-password.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/signup-validation.js') }}"></script>
 {% endblock %}
