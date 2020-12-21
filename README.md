@@ -86,6 +86,17 @@ As a user (looking to buy a book) I want:
     ![Screenshot of passwords not matching flash message](static/images/testing/passwords-not-match.png)
     - When the form is submitted with all the correct validation, the new user is added to the database and logged into the page.
 
+- Testing the login form on `login.html`:
+    - When the form is submitted with no username, it prompts you to fill in the username.
+    ![Screenshot of no username](static/images/testing/no-login-username.png)
+    - When the form is submitted with no password, it prompts you to fill in the password.
+    ![Screenshot of no password](static/images/testing/no-login-password.png)
+    - When the form is submitted with a username that does not exist, it provides a flash message and reloads.
+    ![Screenshot of flash message](static/images/testing/incorrect-username-or-password.png)
+    - When the form is submitted with the incorrect password, it provides a flash message and reloads.
+    ![Screenshot of flash message](static/images/testing/incorrect-username-or-password.png)
+    - When the form is submitted with a correct username and password it logs you in and redirects to the home page.
+
 ## Deployment
 
 ## Credits
