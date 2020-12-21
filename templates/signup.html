@@ -30,13 +30,14 @@
                         <label for="password">Password</label>
                     </div>
                 </div>
-                <!-- repeat password -->
+                <!-- confirm password -->
                 <div class="row">
                     <div class="input-field col s8 offset-s2">
                         <i class="fas fa-user-lock prefix teal-text text-darken-3"></i>
                         <input id="confirm-password" name="confirm-password" type="password" minlength="5"
                             maxlength="15" class="validate" required>
                         <label for="confirm-password">Confirm Password</label>
+                        <span class="helper-text" data-error="Passwords do not match" data-success="Passwords match"></span>
                     </div>
                 </div>
                 <!-- sign up button -->
@@ -48,4 +49,8 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', 'js/confirm-password.js') }}"></script>
 {% endblock %}

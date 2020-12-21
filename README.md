@@ -67,6 +67,10 @@ As a user (looking to buy a book) I want:
 
 ## Credits
 
+### Code
+
+- The script in `confirm-password.js` for checking the passwords match on `signup.html` was adapted from [this jsfiddle](http://jsfiddle.net/SirusDoma/ayf832td/).
+
 ### Content
 
 ### Media
