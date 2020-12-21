@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- the structure of this login form is based on the form used in the task manager mini project -->
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel">
+                <!-- username -->
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <i class="fas fa-user-plus prefix teal-text text-darken-3"></i>
+                        <input id="username" name="username" type="text" minlength="5" 
+                            maxlength="15" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <!-- password -->
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <i class="fas fa-user-lock prefix teal-text text-darken-3"></i>
+                        <input id="password" name="password" type="password" minlength="5"
+                            maxlength="15" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!-- log in button -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large teal darken-3">
+                        Log In <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/signup-validation.js') }}"></script>
+{% endblock %}
