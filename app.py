@@ -38,17 +38,18 @@ def signup():
             flash("Username already exists!")
             return redirect(url_for("signup"))
 
+        # check if passwords match
+        confirm = request.form.get("confirm-password")
+        password = request.form.get("password")
+        if confirm != password:
+            flash("Passwords do not match")
+            return redirect(url_for("signup"))
+
         signup = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
             "email": request.form.get("email").lower()
         }
-
-        # check if passwords match
-        confirm = request.form.get("confirm-password")
-        if confirm != signup["password"]:
-            flash("Passwords do not match")
-            return redirect(url_for("signup"))
 
         mongo.db.users.insert_one(signup)
 
