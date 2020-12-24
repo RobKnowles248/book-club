@@ -23,7 +23,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
                     {% if session.user %}
-                        <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                        <li><a href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user"></i> Profile</a></li>
                         <li><a href="#"><i class="fas fa-user"></i> Add Review</a></li>
                         <li><a href="{{ url_for('logout') }}"><i class="fas fa-user"></i> Log Out</a></li>
                     {% else %}
