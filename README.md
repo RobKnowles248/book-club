@@ -97,6 +97,10 @@ As a user (looking to buy a book) I want:
     ![Screenshot of flash message](static/images/testing/incorrect-username-or-password.png)
     - When the form is submitted with a correct username and password it logs you in and redirects to the home page.
 
+- Testing logout functionality:
+    - When the user is logged in and clicks "logout" they are successfully logged out and redirected to the home page.
+    ![Screenshot of successful logout](static/images/testing/logout-test.png)
+
 ## Deployment
 
 ## Credits
