@@ -114,6 +114,12 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+@app.route("/add_review", methods=["GET", "POST"])
+def add_review():
+    books = mongo.db.books.find().sort("book_name", 1)
+    return render_template("add_review.html", books=books)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

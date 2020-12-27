@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_review') }}">
+            <div class="card-panel">
+                <!-- Submit Button -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large teal darken-3">
+                        Add Review <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
