@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/star-styles.css') }}" type="text/css">
+{% endblock %}
 {% block content %}
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_review') }}">
@@ -26,7 +29,18 @@
                 </div>
                 <!-- Star Picker -->
                 <div class="row">
-                    
+                    <div class="star-rating col s12 center-align">
+                        <input id="star1" name="stars" type="radio" value="1" class="radio-btn hide" required/>
+                        <label for="star1"><i class="fas fa-star"></i></label>
+                        <input id="star2" name="stars" type="radio" value="2" class="radio-btn hide" />
+                        <label for="star2"><i class="fas fa-star"></i></label>
+                        <input id="star3" name="stars" type="radio" value="3" class="radio-btn hide" />
+                        <label for="star3"><i class="fas fa-star"></i></label>
+                        <input id="star4" name="stars" type="radio" value="4" class="radio-btn hide" />
+                        <label for="star5"><i class="fas fa-star"></i></label>
+                        <input id="star5" name="stars" type="radio" value="5" class="radio-btn hide" />
+                        <label for="star5"><i class="fas fa-star"></i></label>
+                    </div>
                 </div>                 
                 <!-- Submit Button -->
                 <div class="row">
@@ -40,17 +54,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-    $(document).ready(function() {
-        var bookNames = {};
-        var bookNamesArray = $("#book-names li").text().split(".");
-        bookNamesArray.pop();
-        bookNamesArray.forEach(function(book){
-            bookNames[book] = null;
-        });
-        $("input.autocomplete").autocomplete({
-            data: bookNames,
-        });
-    });
-</script>
+<script src="{{ url_for('static', filename='js/add-review-script.js') }}"></script>
 {% endblock %}
