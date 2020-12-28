@@ -21,9 +21,17 @@
                 </div>                   
                 <!-- Submit Button -->
                 <div class="row">
-                    <button type="submit" class="col s12 btn-large teal darken-3">
-                        Add Book <i class="fas fa-plus"></i>
-                    </button>
+                    <div class="col s6 center-align">
+                        <a href="{{ url_for('add_review') }}" class="btn-large red darken-4">
+                            Cancel <i class="fas fa-times-circle right"></i>
+                        </a>
+                    </div>
+                    <div class="col s6 center-align">
+                        <button type="submit" class="btn-large teal darken-3">
+                            Add Book <i class="fas fa-plus right"></i>
+                        </button>
+                    </div>
+                    
                 </div>
             </div>
         </form>
