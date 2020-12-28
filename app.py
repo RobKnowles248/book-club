@@ -154,6 +154,29 @@ def add_review():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
+    if request.method == "POST":
+        # Check if the book already exists
+        existing_book = mongo.db.books.find_one(
+            {"book_name": request.form.get("book_name")}
+        )
+        if existing_book:
+            flash("Book already exists!")
+            return redirect(url_for("add_review"))
+        else:
+            # Store the new book data in a dictionary
+            new_book = {
+                "book_name": request.form.get("book_name"),
+                "author": request.form.get("author"),
+                "img_url": "",
+                "purchase_link": "",
+                "reviews": {}
+            }
+
+            # Add the new book to the db
+            mongo.db.books.insert_one(new_book)
+            flash("Book Successfully Added!")
+            return redirect(url_for("add_review"))
+
     return render_template("add_book.html")
 
 
