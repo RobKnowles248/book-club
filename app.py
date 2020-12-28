@@ -116,6 +116,32 @@ def profile(username):
 
 @app.route("/add_review", methods=["GET", "POST"])
 def add_review():
+    if request.method == "POST":
+        # Find the book in the db
+        book = mongo.db.books.find_one(
+            {"book_name": request.form.get("choose_book")}
+        )
+        print(book)
+        if book:
+            # Store the new review data as a dictionary
+            new_review = {
+                "score": request.form.get("stars"),
+                "review_text": request.form.get("review_text"),
+                "review_author": session["user"]
+            }
+            print(new_review)
+
+            # Add the new review data to the dictionary we will update
+            book["reviews"][session["user"]] = new_review
+            print(book)
+
+            # Add the review data to the book's data in the db
+            mongo.db.books.update({"book_name": book["book_name"]}, book)
+            flash("Review Successfully Added!")
+            return redirect(url_for("index"))
+        else:
+            flash("Book not found!")
+
     books = mongo.db.books.find().sort("book_name", 1)
     return render_template("add_review.html", books=books)
 
