@@ -121,26 +121,32 @@ def add_review():
         book = mongo.db.books.find_one(
             {"book_name": request.form.get("choose_book")}
         )
-        print(book)
+
         if book:
-            # Store the new review data as a dictionary
-            new_review = {
-                "score": request.form.get("stars"),
-                "review_text": request.form.get("review_text"),
-                "review_author": session["user"]
-            }
-            print(new_review)
+            # Check if the user has already reviewed this book
+            if book["reviews"][session["user"]]:
+                flash("You have already reviewed this book!")
+                return redirect(url_for("add_review"))
 
-            # Add the new review data to the dictionary we will update
-            book["reviews"][session["user"]] = new_review
-            print(book)
+            else:
+                # Store the new review data as a dictionary
+                new_review = {
+                    "score": request.form.get("stars"),
+                    "review_text": request.form.get("review_text"),
+                    "review_author": session["user"]
+                }
 
-            # Add the review data to the book's data in the db
-            mongo.db.books.update({"book_name": book["book_name"]}, book)
-            flash("Review Successfully Added!")
-            return redirect(url_for("index"))
+                # Add the new review data to the dictionary we will update
+                book["reviews"][session["user"]] = new_review
+
+                # Add the review data to the book's data in the db
+                mongo.db.books.update({"book_name": book["book_name"]}, book)
+                flash("Review Successfully Added!")
+                return redirect(url_for("index"))
+
         else:
             flash("Book not found!")
+            return redirect(url_for("add_review"))
 
     books = mongo.db.books.find().sort("book_name", 1)
     return render_template("add_review.html", books=books)
