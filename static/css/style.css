@@ -22,6 +22,11 @@ main {
     line-height: 2;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 /*--------------------- Add Review Styles */
 
 #book-names {
