@@ -3,6 +3,31 @@
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_review') }}">
             <div class="card-panel">
+                <!-- Book Picker -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-book prefix teal-text text-darken-3"></i>
+                        <input type="text" id="choose_book" name="choose_book" class="autocomplete" required>
+                        <label for="choose_book">Choose Book</label>
+                        <ul id="book-names">
+                            {% for book in books %}
+                                <li>{{ book.book_name }}.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>               
+                <!-- Review Text -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-edit prefix teal-text text-darken-3"></i>
+                        <textarea id="review_text" name="review_text" class="materialize-textarea" required></textarea>
+                        <label for="review_text">Review Text</label>
+                    </div>
+                </div>
+                <!-- Star Picker -->
+                <div class="row">
+                    
+                </div>                 
                 <!-- Submit Button -->
                 <div class="row">
                     <button type="submit" class="col s12 btn-large teal darken-3">
@@ -12,4 +37,20 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        var bookNames = {};
+        var bookNamesArray = $("#book-names li").text().split(".");
+        bookNamesArray.pop();
+        bookNamesArray.forEach(function(book){
+            bookNames[book] = null;
+        });
+        $("input.autocomplete").autocomplete({
+            data: bookNames,
+        });
+    });
+</script>
 {% endblock %}

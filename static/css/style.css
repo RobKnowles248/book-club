@@ -22,6 +22,12 @@ main {
     line-height: 2;
 }
 
+/*--------------------- Add Review Styles */
+
+#book-names {
+    display: none;
+}
+
 /*--------------------- Media Queries */
 
 @media screen and (min-width: 992px) {
