@@ -18,7 +18,14 @@
                             {% endfor %}
                         </ul>
                     </div>
-                </div>               
+                </div>
+                <!-- Add Book Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a class="teal darken-3 btn" href="{{ url_for('add_book') }}">Add Book <i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                              
                 <!-- Review Text -->
                 <div class="row">
                     <div class="input-field col s12">
@@ -45,7 +52,7 @@
                 <!-- Submit Button -->
                 <div class="row">
                     <button type="submit" class="col s12 btn-large teal darken-3">
-                        Add Review <i class="fas fa-sign-in-alt"></i>
+                        Add Review <i class="fas fa-plus"></i>
                     </button>
                 </div>
             </div>

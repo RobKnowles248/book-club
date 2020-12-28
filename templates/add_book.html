@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_book') }}">
+            <div class="card-panel">
+                <!-- Book Name -->
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <i class="fas fa-signature prefix teal-text text-darken-3"></i>
+                        <input id="book_name" name="book_name" type="text" class="validate" required>
+                        <label for="book_name">Book Name</label>
+                    </div>
+                </div>
+                <!-- Author -->
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <i class="fas fa-user prefix teal-text text-darken-3"></i>
+                        <input id="author" name="author" type="text" class="validate" required>
+                        <label for="author">Author</label>
+                    </div>
+                </div>                   
+                <!-- Submit Button -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large teal darken-3">
+                        Add Book <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
