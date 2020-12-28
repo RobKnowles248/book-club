@@ -180,6 +180,12 @@ def add_book():
     return render_template("add_book.html")
 
 
+@app.route("/book_page/<book_id>")
+def book_page(book_id):
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    return render_template("book_page.html", book=book)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
