@@ -114,6 +114,14 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+def compute_average_score(book):
+    scores = []
+    for review in book["reviews"]:
+        scores.append(review["score"])
+    print(scores)
+    return sum(scores) // len(scores)
+
+
 @app.route("/add_review", methods=["GET", "POST"])
 def add_review():
     if request.method == "POST":
@@ -124,20 +132,26 @@ def add_review():
 
         if book:
             # Check if the user has already reviewed this book
-            if book["reviews"][session["user"]]:
-                flash("You have already reviewed this book!")
-                return redirect(url_for("add_review"))
+            for review in book["reviews"]:
+                if review["review_author"] == session["user"]:
+                    flash("You have already reviewed this book!")
+                    return redirect(url_for("add_review"))
 
             else:
                 # Store the new review data as a dictionary
                 new_review = {
-                    "score": request.form.get("stars"),
+                    "score": int(request.form.get("stars")),
                     "review_text": request.form.get("review_text"),
                     "review_author": session["user"]
                 }
+                print(new_review)
 
                 # Add the new review data to the dictionary we will update
                 book["reviews"].append(new_review)
+
+                # Compute the new average score
+                book["average_score"] = compute_average_score(book)
+                print(book)
 
                 # Add the review data to the book's data in the db
                 mongo.db.books.update({"book_name": book["book_name"]}, book)
@@ -169,6 +183,7 @@ def add_book():
                 "author": request.form.get("author"),
                 "img_url": "",
                 "purchase_link": "",
+                "average_score": 1,
                 "reviews": []
             }
 
