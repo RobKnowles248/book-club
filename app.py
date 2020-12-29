@@ -137,7 +137,7 @@ def add_review():
                 }
 
                 # Add the new review data to the dictionary we will update
-                book["reviews"][session["user"]] = new_review
+                book["reviews"].append(new_review)
 
                 # Add the review data to the book's data in the db
                 mongo.db.books.update({"book_name": book["book_name"]}, book)
@@ -169,7 +169,7 @@ def add_book():
                 "author": request.form.get("author"),
                 "img_url": "",
                 "purchase_link": "",
-                "reviews": {}
+                "reviews": []
             }
 
             # Add the new book to the db
