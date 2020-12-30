@@ -25,6 +25,13 @@ def index():
     return render_template("index.html", books=books)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    books = mongo.db.books.find({"$text": {"$search": query}})
+    return render_template("index.html", books=books)
+
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     # code for this method adapted from code for the

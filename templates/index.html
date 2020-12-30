@@ -4,20 +4,20 @@
     <!-- search bar -->
     <div class="row">
         <div class="col s12 m10 offset-m1">
-            <div class="row card-panel">
+            <div class="row card-panel hoverable">
                 <form action="{{ url_for('search') }}" method="POST" class="col s12">
-                    <div class="row center-align">
-                        <div class="input-field col s12 xl8">
+                    <div class="row center-align valign-wrapper">
+                        <div class="input-field col s8">
                             <i class="fas fa-search prefix teal-text text-darken-3"></i>
                             <input type="text" name="query" id="query" class="validate" minlength="3" required>
                             <label for="query">Search Books</label>
                         </div>
-                        <div class="col s12 xl4">
-                            <a href="{{ url_for('index') }}" class="red btn">
-                                <i class="fas fa-redo-alt left"></i> Reset
+                        <div class="col s4">
+                            <a href="{{ url_for('index') }}" class="red btn text-center search-btn">
+                                <i class="fas fa-redo-alt"></i><span class="hide-on-med-and-down"> Reset</span>
                             </a>
-                            <button type="submit" class="btn teal darken-3">
-                                <i class="fas fa-search left"></i> Search
+                            <button type="submit" class="btn teal darken-3 text-center search-btn">
+                                <i class="fas fa-search"></i><span class="hide-on-med-and-down"> Search</span>
                             </button>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col s12 m10 offset-m1">
                 <a href="{{ url_for('book_page', book_id=book._id) }}">
-                    <div class="row card-panel">
+                    <div class="row card-panel hoverable">
                         <!-- book image -->
                         <div class="col s12 m4">
                             <img src="{{ book.img_url }}" alt="Cover of {{ book.book_name }}">

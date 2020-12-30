@@ -12,9 +12,7 @@ html {
     background-size: cover;
 }
 
-main {
-    min-height: calc(100vh - 64px);
-    width: 100vw;
+body {
     background-color: rgba(245, 245, 245, 0.2);
 }
 
@@ -25,6 +23,10 @@ main {
 a {
     text-decoration: none;
     color: black;
+}
+
+.search-btn {
+    margin: 10px;
 }
 
 /*--------------------- Add Review Styles */
