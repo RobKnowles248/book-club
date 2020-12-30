@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <!-- the structure of this signup form is based on the form used in the task manager mini project -->
-    <div class="row">
+    <div class="row top-margin">
         <form class="col s12 m8 offset-m2" onsubmit="return signupValidate()" method="POST" action="{{ url_for('signup') }}">
             <div class="card-panel">
                 <!-- username -->

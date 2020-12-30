@@ -41,6 +41,10 @@ a {
     margin: 10px;
 }
 
+.top-margin {
+    margin-top: 30px;
+}
+
 /*--------------------- Add Review Styles */
 
 #book-names {
