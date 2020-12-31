@@ -1,4 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>{{ book.book_name }}</h1>
+
+    <!-- book info card -->
+    <div class="row top-margin">
+        <div class="col s12">
+            <div class="row card-panel hoverable center-align">
+                <div class="col s12">
+                    <h1 class="center-align">{{ book.book_name }}</h1>
+                </div>
+                <!-- book image -->
+                <div class="col s12 m4">
+                    <img src="{{ book.img_url }}" alt="Cover of {{ book.book_name }}">
+                </div>
+                <!-- author and about book text -->
+                <div class="col s12 m8">
+                    <p>By {{ book.author }}</p>
+                    <p>Book description goes here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- reviews collapsible -->
+    <ul class="collapsible expandable">
+        {% for review in book.reviews %}
+            <li>
+                <div class="collapsible-header teal white-text darken-3">
+                    <div class="star-score">
+                        {% if review.score == 1 %}
+                            <i class="fas fa-star amber-text"></i>
+                        {% elif review.score == 2 %}
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                        {% elif review.score == 3 %}
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                        {% elif review.score == 4 %}
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                        {% elif review.score == 5 %}
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                            <i class="fas fa-star amber-text"></i>
+                        {% endif %}
+                    </div>
+                    <div class="col s6">
+                        By {{ review.review_author }}
+                    </div>
+                    <div class="col s3 align-right">
+                        <i class="fas fa-caret-down"></i>
+                    </div>
+                </div>
+                <div class="collapsible-body white"><span>{{ review.review_text }}</span></div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
