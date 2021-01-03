@@ -40,3 +40,14 @@
 
 - When the user is logged in and clicks "logout" they are successfully logged out and redirected to the home page.
 ![Screenshot of successful logout](static/images/testing/logout-test.png)
+
+## Testing the add book functionality:
+
+- When the form is submitted with no book name it prompts you to fill in the book name.
+![Screenshot of unfilled book name](static/images/testing/no-book-name.png)
+- When the form is submitted with no author it prompts you to fill in the author.
+![Screenshot of unfilled author](static/images/testing/no-author.png)
+- If you try to add a book that already exists in the database a flash message appears to tell you this, you are redirected to the `add_review` page and the book is not added.
+![Screenshot of flash message](static/images/testing/book-exists.png)
+- If you fill in a new book and it's author, you are redirected to the add_review page and a flash message appears to say that you were successful in adding the review.
+![Screenshot of flash message](static/images/testing/book-added.png)
