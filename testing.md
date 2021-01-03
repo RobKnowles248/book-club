@@ -51,3 +51,17 @@
 ![Screenshot of flash message](static/images/testing/book-exists.png)
 - If you fill in a new book and it's author, you are redirected to the add_review page and a flash message appears to say that you were successful in adding the review.
 ![Screenshot of flash message](static/images/testing/book-added.png)
+
+## Testing the add review functionality:
+
+- When the form is submitted with no book it prompts you to fill in the book.
+![Screenshot of unfilled book](static/images/testing/no-book.png)
+- When the form is submitted with a book that does not exist a flash message appears to tell you this.
+![Screenshot of non-existent book](static/images/testing/book-not-found.png)
+- When the form is submitted with no review text it prompts you to fill in the review text.
+![Screenshot of unfilled review text](static/images/testing/no-review-text.png)
+- When the form is submitted with no star choice it does not let you submit the form.
+- When the form is submitted with a book you've already reviewed a flash message appears to tell you this.
+![Screenshot of flash message](static/images/testing/already-reviewed.png)
+- When the form is submitted successfully a flash message appears to tell you this, you are redirected to the home page and the review is added to the database.
+![Screenshot of flash message](static/images/testing/review-added.png)
