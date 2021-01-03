@@ -130,7 +130,8 @@ def compute_average_score(book):
 
 
 @app.route("/add_review", methods=["GET", "POST"])
-def add_review():
+@app.route("/add_review/<book_name>", methods=["GET", "POST"])
+def add_review(book_name=None):
     if request.method == "POST":
         # Find the book in the db
         book = mongo.db.books.find_one(
@@ -170,7 +171,7 @@ def add_review():
             return redirect(url_for("add_review"))
 
     books = mongo.db.books.find().sort("book_name", 1)
-    return render_template("add_review.html", books=books)
+    return render_template("add_review.html", books=books, book_name=book_name)
 
 
 @app.route("/edit_review/<book_id>", methods=["GET", "POST"])
@@ -218,7 +219,8 @@ def add_book():
         )
         if existing_book:
             flash("Book already exists!")
-            return redirect(url_for("add_review"))
+            return redirect(
+                url_for("add_review", book_name=existing_book["book_name"]))
         else:
             # Store the new book data in a dictionary
             new_book = {
@@ -233,7 +235,8 @@ def add_book():
             # Add the new book to the db
             mongo.db.books.insert_one(new_book)
             flash("Book Successfully Added!")
-            return redirect(url_for("add_review"))
+            return redirect(url_for(
+                "add_review", book_name=new_book["book_name"]))
 
     return render_template("add_book.html")
 

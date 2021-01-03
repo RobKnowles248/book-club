@@ -10,7 +10,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-book prefix teal-text text-darken-3"></i>
-                        <input type="text" id="choose_book" name="choose_book" class="autocomplete" required>
+                        {% if book_name %}
+                            <input type="text" id="choose_book" name="choose_book" 
+                                value="{{ book_name }}" class="autocomplete" required>
+                        {% else %}
+                            <input type="text" id="choose_book" name="choose_book" class="autocomplete" required>
+                        {% endif %}
                         <label for="choose_book">Choose Book</label>
                         <ul id="book-names">
                             {% for book in books %}
