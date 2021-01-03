@@ -195,6 +195,20 @@ def edit_review(book_id):
                 "edit_review.html", review=review, book=book)
 
 
+@app.route("/delete_review/<book_id>")
+def delete_review(book_id):
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    for review in book["reviews"]:
+        if review["review_author"] == session["user"]:
+            # remove the review from the reviews list
+            book["reviews"].remove(review)
+
+            # update the book in the database
+            mongo.db.books.update({"book_name": book["book_name"]}, book)
+            flash("Review successfully deleted!")
+            return redirect(url_for("book_page", book_id=book["_id"]))
+
+
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
