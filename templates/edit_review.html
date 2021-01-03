@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/star-styles.css') }}" type="text/css">
+{% endblock %}
+{% block content %}
+    <div class="row top-margin">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_review', book_id=book._id) }}">
+            <div class="card-panel">            
+                <!-- Review Text -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-edit prefix teal-text text-darken-3"></i>
+                        <textarea id="review_text" name="review_text" class="materialize-textarea" 
+                            required>{{ review.review_text }}</textarea>
+                        <label for="review_text">Review Text</label>
+                    </div>
+                </div>
+                <!-- Star Picker -->
+                <div class="row">
+                    <div class="star-rating col s12 center-align">
+                        <input id="star1" name="stars" type="radio" value="1" class="hide" required/>
+                        <label for="star1"><i class="fas fa-star"></i></label>
+                        <input id="star2" name="stars" type="radio" value="2" class="hide" />
+                        <label for="star2"><i class="fas fa-star"></i></label>
+                        <input id="star3" name="stars" type="radio" value="3" class="hide" />
+                        <label for="star3"><i class="fas fa-star"></i></label>
+                        <input id="star4" name="stars" type="radio" value="4" class="hide" />
+                        <label for="star5"><i class="fas fa-star"></i></label>
+                        <input id="star5" name="stars" type="radio" value="5" class="hide" />
+                        <label for="star5"><i class="fas fa-star"></i></label>
+                    </div>
+                </div>                 
+                <!-- Submit Button -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large teal darken-3">
+                        Edit Review <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/add-review-script.js') }}"></script>
+{% endblock %}
