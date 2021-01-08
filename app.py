@@ -239,7 +239,7 @@ def edit_book(book_id):
         book["purchase_link"] = request.form.get("purchase_link")
         book["description"] = request.form.get("description")
 
-        mongo.db.books.update({"book_name": book["book_name"]}, book)
+        mongo.db.books.update({"_id": ObjectId(book["_id"])}, book)
         flash("Book successfully edited!")
         return redirect(url_for("book_page", book_id=book["_id"]))
 
