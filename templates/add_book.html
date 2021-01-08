@@ -19,6 +19,13 @@
                         <label for="author">Author</label>
                     </div>
                 </div>
+                <!-- Autofill Fields Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="teal darken-3 btn-large" id="autofill-fields"> <i class="fas fa-fill left"></i> Autofill other fields</button>
+                        <p class="red-text text-darken-4" id="autofill-warning"></p>
+                    </div>
+                </div>
                 <!-- Cover Image URL -->
                 <div class="row">
                     <div class="input-field col s8 offset-s2">
@@ -60,4 +67,7 @@
             </div>
         </form>
     </div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/autofill-fields.js') }}"></script>
 {% endblock %}
