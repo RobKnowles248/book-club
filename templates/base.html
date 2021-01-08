@@ -39,7 +39,6 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
             {% if session.user %}
-                <li><a href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a href="{{ url_for('add_review') }}"><i class="fas fa-plus"></i> Add Review</a></li>
                 <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
             {% else %}
