@@ -214,9 +214,10 @@ def add_book():
             new_book = {
                 "book_name": request.form.get("book_name"),
                 "author": request.form.get("author"),
-                "img_url": "",
-                "purchase_link": "",
-                "average_score": 1,
+                "img_url": request.form.get("img_url"),
+                "purchase_link": request.form.get("purchase_link"),
+                "description": request.form.get("description"),
+                "average_score": 0,
                 "reviews": []
             }
 
