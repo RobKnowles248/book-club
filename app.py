@@ -113,7 +113,6 @@ def compute_average_score(book):
     scores = []
     for review in book["reviews"]:
         scores.append(review["score"])
-    print(scores)
     return sum(scores) // len(scores)
 
 
@@ -140,14 +139,12 @@ def add_review(book_name=None):
                     "review_text": request.form.get("review_text"),
                     "review_author": session["user"]
                 }
-                print(new_review)
 
                 # Add the new review data to the dictionary we will update
                 book["reviews"].append(new_review)
 
                 # Compute the new average score
                 book["average_score"] = compute_average_score(book)
-                print(book)
 
                 # Add the review data to the book's data in the db
                 mongo.db.books.update({"book_name": book["book_name"]}, book)
