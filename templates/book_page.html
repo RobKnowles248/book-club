@@ -4,84 +4,87 @@
     <!-- book info card -->
     <div class="row top-margin">
         <div class="col s12">
-            <div class="row card-panel hoverable center-align">
-                <div class="col s12">
-                    <h1 class="center-align">{{ book.book_name }}</h1>
+            <div class="card-panel hoverable center-align">
+                <div class="row">
+                    <div class="col s12">
+                        <h1 class="center-align">{{ book.book_name }}</h1>
+                    </div>
+                    <!-- book image -->
+                    <div class="col s12 m4">
+                        <img src="{{ book.img_url }}" alt="Cover of {{ book.book_name }}" class="responsive-img">
+                    </div>
+                    <!-- author and about book text -->
+                    <div class="col s12 m8">
+                        <h4>By {{ book.author }}</h4>
+                        <p>{{ book.description }}</p>
+                    </div>
                 </div>
-                <!-- book image -->
-                <div class="col s12 m4">
-                    <img src="{{ book.img_url }}" alt="Cover of {{ book.book_name }}">
+
+                {% if book.added_by == session.user %}
+                    <!-- edit book button -->
+                    <div class="row top-margin center-align">
+                        <div class="col s12">
+                            <a href="{{ url_for('edit_book', book_id=book._id ) }}" class="btn-large teal darken-3 white-text">
+                                <i class="fas fa-edit left"></i> Edit Book Details
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- add review button -->
+                <div class="row top-margin center-align">
+                    <div class="col s12">
+                        <a href="{{ url_for('add_review', book_name=book.book_name ) }}" class="btn-large teal darken-3 white-text">
+                            <i class="fas fa-plus left"></i> Add Review
+                        </a>
+                    </div>
                 </div>
-                <!-- author and about book text -->
-                <div class="col s12 m8">
-                    <p>By {{ book.author }}</p>
-                    <p>Book description goes here</p>
-                </div>
+
+                <!-- reviews collapsible -->
+                <ul class="collection">
+                    {% for review in book.reviews %}
+                        <li class="collection-item">
+                            <div class="teal white-text darken-3 center-align">
+                                <div class="star-score">
+                                    {% if review.score == 1 %}
+                                        <i class="fas fa-star amber-text"></i>
+                                    {% elif review.score == 2 %}
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                    {% elif review.score == 3 %}
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                    {% elif review.score == 4 %}
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                    {% elif review.score == 5 %}
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                        <i class="fas fa-star amber-text"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="col">
+                                    By {{ review.review_author }}
+                                </div>
+                                {% if review.review_author == session.user %}
+                                    <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">Delete</a>
+                                    <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3">Edit</a>
+                                {% endif %}
+                                <div class="col">
+                                    <i class="fas fa-caret-down right"></i>
+                                </div>
+                            </div>
+                            <div><span>{{ review.review_text }}</span></div>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
 
-    {% if book.added_by == session.user %}
-        <!-- edit book button -->
-        <div class="row top-margin center-align">
-            <div class="col s12">
-                <a href="{{ url_for('edit_book', book_id=book._id ) }}" class="btn-large teal darken-3 white-text">
-                    <i class="fas fa-edit left"></i> Edit Book Details
-                </a>
-            </div>
-        </div>
-    {% endif %}
-
-    <!-- add review button -->
-    <div class="row top-margin center-align">
-        <div class="col s12">
-            <a href="{{ url_for('add_review', book_name=book.book_name ) }}" class="btn-large teal darken-3 white-text">
-                <i class="fas fa-plus left"></i> Add Review
-            </a>
-        </div>
-    </div>
-
-    <!-- reviews collapsible -->
-    <ul class="collapsible expandable">
-        {% for review in book.reviews %}
-            <li>
-                <div class="collapsible-header teal white-text darken-3 center-align">
-                    <div class="star-score">
-                        {% if review.score == 1 %}
-                            <i class="fas fa-star amber-text"></i>
-                        {% elif review.score == 2 %}
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                        {% elif review.score == 3 %}
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                        {% elif review.score == 4 %}
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                        {% elif review.score == 5 %}
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                            <i class="fas fa-star amber-text"></i>
-                        {% endif %}
-                    </div>
-                    <div class="col">
-                        By {{ review.review_author }}
-                    </div>
-                    {% if review.review_author == session.user %}
-                        <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">Delete</a>
-                        <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3">Edit</a>
-                    {% endif %}
-                    <div class="col">
-                        <i class="fas fa-caret-down right"></i>
-                    </div>
-                </div>
-                <div class="collapsible-body white"><span>{{ review.review_text }}</span></div>
-            </li>
-        {% endfor %}
-    </ul>
 {% endblock %}
