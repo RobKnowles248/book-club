@@ -218,6 +218,7 @@ def add_book():
                 "purchase_link": request.form.get("purchase_link"),
                 "description": request.form.get("description"),
                 "average_score": 0,
+                "added_by": session["user"],
                 "reviews": []
             }
 
@@ -228,6 +229,24 @@ def add_book():
                 "add_review", book_name=new_book["book_name"]))
 
     return render_template("add_book.html")
+
+
+@app.route("/edit_book/<book_id>")
+def edit_book(book_id):
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    if request.method == "POST":
+        # update the book in the db
+        book["book_name"] = request.form.get("book_name")
+        book["author"] = request.form.get("author")
+        book["img_url"] = request.form.get("img_url")
+        book["purchase_link"] = request.form.get("purchase_link")
+        book["description"] = request.form.get("description")
+
+        mongo.db.books.update({"book_name": book["book_name"]}, book)
+        flash("Book successfully edited!")
+        return redirect(url_for("book_page", book_id=book["_id"]))
+
+    return render_template("edit_book.html", book=book)
 
 
 @app.route("/book_page/<book_id>")
