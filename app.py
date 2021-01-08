@@ -228,7 +228,7 @@ def add_book():
     return render_template("add_book.html")
 
 
-@app.route("/edit_book/<book_id>")
+@app.route("/edit_book/<book_id>", methods=["GET", "POST"])
 def edit_book(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     if request.method == "POST":

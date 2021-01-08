@@ -30,12 +30,24 @@ $(document).ready(function(){
                     let book = response["items"][0]["volumeInfo"];
                     console.log(book);
 
-                    // Set the imgURL and description
+                    // Set the title, imgURL, description and ISBN variables
+                    let title = book["title"];
                     let imgURL = book["imageLinks"]["thumbnail"];
                     let description = book["description"];
+                    let ISBN = ""
+                    for (var i = 0; i < book["industryIdentifiers"].length; i++) {
+                        if (book["industryIdentifiers"][i]["type"] == "ISBN_10") {
+                            ISBN = book["industryIdentifiers"][i]["identifier"];
+                        }
+                    }
+                    
+                    // Find the purchase link from the ISBN10
+                    let purchaseLink = "https://www.amazon.com/dp/" + ISBN;
 
-                    // Fill the imgURL and description fields in the form
+                    // Fill the book_name, img_url, purchase_link and description fields in the form
+                    $("#book_name").val(title);
                     $("#img_url").val(imgURL);
+                    $("#purchase_link").val(purchaseLink);
                     $("#description").val(description);
 
                 }
