@@ -109,18 +109,6 @@ def logout():
     return redirect(url_for("index"))
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    # get the session user's username from the db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
-    if session["user"]:
-        return render_template("profile.html", username=username)
-
-    return redirect(url_for("login"))
-
-
 def compute_average_score(book):
     scores = []
     for review in book["reviews"]:
