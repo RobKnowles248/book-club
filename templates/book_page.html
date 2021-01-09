@@ -9,6 +9,12 @@
                     <div class="col s12">
                         <h1 class="center-align">{{ book.book_name }}</h1>
                     </div>
+                    <!-- book average score -->
+                    <div class="star-score col s12">
+                        {% for i in range(book.average_score) %}
+                            <i class="fas fa-star amber-text"></i>
+                        {% endfor %}
+                    </div>
                     <!-- book image -->
                     <div class="col s12 m4">
                         <img src="{{ book.img_url }}" alt="Cover of {{ book.book_name }}" class="responsive-img">
@@ -46,27 +52,9 @@
                         <li class="collection-item">
                             <div class="teal white-text darken-3 center-align">
                                 <div class="star-score">
-                                    {% if review.score == 1 %}
+                                    {% for i in range(review.score) %}
                                         <i class="fas fa-star amber-text"></i>
-                                    {% elif review.score == 2 %}
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                    {% elif review.score == 3 %}
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                    {% elif review.score == 4 %}
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                    {% elif review.score == 5 %}
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                        <i class="fas fa-star amber-text"></i>
-                                    {% endif %}
+                                    {% endfor %}
                                 </div>
                                 <div class="col">
                                     By {{ review.review_author }}

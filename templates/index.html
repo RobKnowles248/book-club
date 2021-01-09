@@ -42,27 +42,9 @@
                             <p>By {{ book.author }}</p>
                             <!-- book average score -->
                             <div class="star-score">
-                                {% if book.average_score == 1 %}
+                                {% for i in range(book.average_score) %}
                                     <i class="fas fa-star amber-text"></i>
-                                {% elif book.average_score == 2 %}
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                {% elif book.average_score == 3 %}
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                {% elif book.average_score == 4 %}
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                {% elif book.average_score == 5 %}
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                    <i class="fas fa-star amber-text"></i>
-                                {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
