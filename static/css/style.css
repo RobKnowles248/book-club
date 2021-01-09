@@ -37,18 +37,32 @@ a {
     color: black;
 }
 
+.top-margin {
+    margin-top: 30px;
+}
+
+/*--------------------- Home Page Styles */
+
 .search-btn {
     margin: 10px;
 }
 
-.top-margin {
-    margin-top: 30px;
-}
 
 /*--------------------- Add Review Styles */
 
 #book-names {
     display: none;
+}
+
+/*--------------------- Book Page Styles */
+
+.collection .collection-item {
+    padding: 0;
+}
+
+.review-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 /*--------------------- Media Queries */

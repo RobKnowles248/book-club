@@ -6,6 +6,7 @@
         <div class="col s12">
             <div class="card-panel hoverable center-align">
                 <div class="row">
+                    <!-- book title -->
                     <div class="col s12">
                         <h1 class="center-align">{{ book.book_name }}</h1>
                     </div>
@@ -37,6 +38,47 @@
                     </div>
                 {% endif %}
 
+                <!-- reviews title -->
+                <hr class="teal darken-3">
+                <h2 class="center-align">Reviews</h2>
+
+                <!-- reviews collapsible -->
+                <ul class="collection">
+                    {% for review in book.reviews %}
+                        <li class="collection-item">
+                            <div class="teal white-text darken-3 center-align review-header row">
+                                <div class="star-score col s12 m6">
+                                    {% for i in range(review.score) %}
+                                        <i class="fas fa-star amber-text"></i>
+                                    {% endfor %}
+                                </div>
+                                <div class="col s12 m6">
+                                    By {{ review.review_author }}
+                                </div>
+
+                            </div>
+                            <div class="review-main row">
+                                <div class="col s12">
+                                    <p>{{ review.review_text }}</p>
+                                </div>
+                                {% if review.review_author == session.user %}
+                                    <div class="col s12 m6 center-align">
+                                        <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">
+                                            <i class="fas fa-times-circle left"></i> Delete
+                                        </a>
+                                    </div>
+                                    <div class="col s12 m6 center-align">
+                                        <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3">
+                                            <i class="fas fa-edit left"></i> Edit
+                                        </a>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
                 <!-- add review button -->
                 <div class="row top-margin center-align">
                     <div class="col s12">
@@ -45,32 +87,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- reviews collapsible -->
-                <ul class="collection">
-                    {% for review in book.reviews %}
-                        <li class="collection-item">
-                            <div class="teal white-text darken-3 center-align">
-                                <div class="star-score">
-                                    {% for i in range(review.score) %}
-                                        <i class="fas fa-star amber-text"></i>
-                                    {% endfor %}
-                                </div>
-                                <div class="col">
-                                    By {{ review.review_author }}
-                                </div>
-                                {% if review.review_author == session.user %}
-                                    <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">Delete</a>
-                                    <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3">Edit</a>
-                                {% endif %}
-                                <div class="col">
-                                    <i class="fas fa-caret-down right"></i>
-                                </div>
-                            </div>
-                            <div><span>{{ review.review_text }}</span></div>
-                        </li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
     </div>
