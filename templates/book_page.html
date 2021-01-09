@@ -52,37 +52,39 @@
                 <ul class="collection">
                     {% if book.reviews != [] %}
                         {% for review in book.reviews %}
-                            <li class="collection-item">
-                                <div class="teal white-text darken-3 center-align review-header row">
-                                    <div class="star-score col s12 m6">
-                                        {% for i in range(review.score) %}
-                                            <i class="fas fa-star amber-text"></i>
-                                        {% endfor %}
-                                    </div>
-                                    <div class="col s12 m6">
-                                        By {{ review.review_author }}
-                                    </div>
-
-                                </div>
-                                <div class="review-main row">
-                                    <div class="col s12">
-                                        <p>{{ review.review_text }}</p>
-                                    </div>
-                                    {% if review.review_author == session.user %}
-                                        <div class="col s12 m6 center-align">
-                                            <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">
-                                                <i class="fas fa-trash-alt left"></i> Delete
-                                            </a>
+                            {% if review != {} %}
+                                <li class="collection-item">
+                                    <div class="teal white-text darken-3 center-align review-header row">
+                                        <div class="star-score col s12 m6">
+                                            {% for i in range(review.score) %}
+                                                <i class="fas fa-star amber-text"></i>
+                                            {% endfor %}
                                         </div>
-                                        <div class="col s12 m6 center-align">
-                                            <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3">
-                                                <i class="fas fa-edit left"></i> Edit
-                                            </a>
+                                        <div class="col s12 m6">
+                                            By {{ review.review_author }}
                                         </div>
-                                    {% endif %}
 
-                                </div>
-                            </li>
+                                    </div>
+                                    <div class="review-main row">
+                                        <div class="col s12">
+                                            <p>{{ review.review_text }}</p>
+                                        </div>
+                                        {% if review.review_author == session.user %}
+                                            <div class="col s12 m6 center-align">
+                                                <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">
+                                                    <i class="fas fa-trash-alt left"></i> Delete
+                                                </a>
+                                            </div>
+                                            <div class="col s12 m6 center-align">
+                                                <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3">
+                                                    <i class="fas fa-edit left"></i> Edit
+                                                </a>
+                                            </div>
+                                        {% endif %}
+
+                                    </div>
+                                </li>
+                            {% endif %}
                         {% endfor %}
                     {% else %}
                             <li class="collection-item">
