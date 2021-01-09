@@ -72,3 +72,20 @@ a {
         margin-left: 20px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    main {
+        min-height: calc(100vh - 56px);
+        top: 56px;
+    }
+
+    .brand-logo i.fas.fa-book-open {
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .brand-logo span {
+        display: none;
+    }
+}
