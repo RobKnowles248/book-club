@@ -27,12 +27,18 @@
                     </div>
                 </div>
 
-                {% if book.added_by == session.user %}
+                {% if book.added_by == session.user or session.user == "admin" %}
                     <!-- edit book button -->
                     <div class="row top-margin center-align">
-                        <div class="col s12">
+                        <div class="col s12 m6">
                             <a href="{{ url_for('edit_book', book_id=book._id ) }}" class="btn-large teal darken-3 white-text">
                                 <i class="fas fa-edit left"></i> Edit Book Details
+                            </a>
+                        </div>
+                        <!-- delete book button -->
+                        <div class="col s12 m6">
+                            <a href="{{ url_for('delete_book', book_id=book._id ) }}" class="btn-large red darken-4 white-text">
+                                <i class="fas fa-trash-alt left"></i> Delete Book
                             </a>
                         </div>
                     </div>
@@ -65,7 +71,7 @@
                                     {% if review.review_author == session.user %}
                                         <div class="col s12 m6 center-align">
                                             <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">
-                                                <i class="fas fa-times-circle left"></i> Delete
+                                                <i class="fas fa-trash-alt left"></i> Delete
                                             </a>
                                         </div>
                                         <div class="col s12 m6 center-align">
