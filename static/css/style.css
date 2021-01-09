@@ -54,6 +54,10 @@ a {
     display: none;
 }
 
+.big-star {
+    font-size: 30px;
+}
+
 /*--------------------- Book Page Styles */
 
 .collection .collection-item {

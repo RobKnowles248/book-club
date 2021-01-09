@@ -1,7 +1,4 @@
 {% extends "base.html" %}
-{% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/star-styles.css') }}" type="text/css">
-{% endblock %}
 {% block content %}
     <div class="row top-margin">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_review', book_id=book._id) }}">
@@ -21,13 +18,13 @@
                         {% for i in range(1, 6) %}
                             {% if i < review.score %}
                                 <input id="star{{i}}" name="stars" type="radio" value="{{i}}" class="hide"/>
-                                <label for="star{{i}}"><i class="fas fa-star amber-text"></i></label>
+                                <label for="star{{i}}"><i class="fas fa-star amber-text big-star"></i></label>
                             {% elif i == review.score %}
                                 <input id="star{{i}}" name="stars" type="radio" value="{{i}}" class="hide" checked required/>
-                                <label for="star{{i}}"><i class="fas fa-star amber-text"></i></label>
+                                <label for="star{{i}}"><i class="fas fa-star amber-text big-star"></i></label>
                             {% elif i > review.score %}
                                 <input id="star{{i}}" name="stars" type="radio" value="{{i}}" class="hide" required/>
-                                <label for="star{{i}}"><i class="fas fa-star"></i></label>
+                                <label for="star{{i}}"><i class="fas fa-star big-star"></i></label>
                             {% endif %}                           
                         {% endfor %}
                     </div>
