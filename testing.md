@@ -65,3 +65,14 @@
 ![Screenshot of flash message](static/images/testing/already-reviewed.png)
 - When the form is submitted successfully a flash message appears to tell you this, you are redirected to the home page and the review is added to the database.
 ![Screenshot of flash message](static/images/testing/review-added.png)
+
+# Bugs Discovered
+
+- Bug with `edit_book` method not editing the book:
+    - While testing the edit_book method, I noticed that for some books the edit_book method was not actually editing the book when the form was submitted despite no errors showing up.
+    - I then realised this was only happening when the title of the book was edited.
+    - This was due to the POST method for the function updating the book in the database according to the book name:
+    ![Screenshot of line in POST method where book is updated according to book_name](static/images/testing/book-name-search.png)
+    - If the book name had been changed, then nothing was getting updated in the database as there was no book in the database with the new book name.
+    - I fixed this by changing the POST method to update the book record according to it's `_id` field:
+    ![Screenshot of line in POST method where book is updated according to _id](static/images/testing/book-id-search.png)
