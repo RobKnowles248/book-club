@@ -103,6 +103,9 @@ def login():
 
 @app.route("/logout")
 def logout():
+    if "user" not in session:
+        return redirect(url_for('login'))
+
     # remove user from session cookies
     flash("Successfully logged out!")
     session.pop("user")
@@ -119,6 +122,9 @@ def compute_average_score(book):
 @app.route("/add_review", methods=["GET", "POST"])
 @app.route("/add_review/<book_name>", methods=["GET", "POST"])
 def add_review(book_name=None):
+    if "user" not in session:
+        return redirect(url_for('login'))
+
     if request.method == "POST":
         # Find the book in the db
         book = mongo.db.books.find_one(
@@ -161,6 +167,9 @@ def add_review(book_name=None):
 
 @app.route("/edit_review/<book_id>", methods=["GET", "POST"])
 def edit_review(book_id):
+    if "user" not in session:
+        return redirect(url_for('login'))
+
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     for review in book["reviews"]:
         if review["review_author"] == session["user"]:
@@ -183,6 +192,9 @@ def edit_review(book_id):
 
 @app.route("/delete_review/<book_id>")
 def delete_review(book_id):
+    if "user" not in session:
+        return redirect(url_for('login'))
+
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     for review in book["reviews"]:
         if review["review_author"] == session["user"]:
@@ -197,6 +209,9 @@ def delete_review(book_id):
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
+    if "user" not in session:
+        return redirect(url_for('login'))
+
     if request.method == "POST":
         # Check if the book already exists
         existing_book = mongo.db.books.find_one(
@@ -230,6 +245,9 @@ def add_book():
 
 @app.route("/edit_book/<book_id>", methods=["GET", "POST"])
 def edit_book(book_id):
+    if "user" not in session:
+        return redirect(url_for('login'))
+
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     if request.method == "POST":
         # update the book in the db
@@ -248,6 +266,9 @@ def edit_book(book_id):
 
 @app.route("/delete_book/<book_id>")
 def delete_book(book_id):
+    if "user" not in session:
+        return redirect(url_for('login'))
+
     mongo.db.books.remove({"_id": ObjectId(book_id)})
     flash("Book Successfully Deleted")
     return redirect(url_for("index"))
