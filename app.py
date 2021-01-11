@@ -21,14 +21,14 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/index")
 def index():
-    books = mongo.db.books.find()
+    books = list(mongo.db.books.find())
     return render_template("index.html", books=books)
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    books = mongo.db.books.find({"$text": {"$search": query}})
+    books = list(mongo.db.books.find({"$text": {"$search": query}}))
     return render_template("index.html", books=books)
 
 
