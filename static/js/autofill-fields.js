@@ -1,14 +1,15 @@
 $(document).ready(function(){
 
-    function AutofillFromGoogleBooks(autofillFrom, bookName, author, ISBN) {
+    function AutofillFromGoogleBooks(autofillFrom) {
         /*
         function that searches the google books API for book data from either book name
         and author or ISBN and inputs the data into the form.
         :autofillFrom: string that specifies whether to autofill from book name and author or ISBN.
-        :bookName: string that gives the bookName
-        :author: string that gives the bookName
-        :ISBN: string that gives the ISBN
         */
+
+        // Reset the autofill warning text
+        $("#autofill-warning").text("");
+        $("#autofill-ISBN-warning").text("");
 
         // store the id of the warning text p in a variable warningText
         let warningID = "";
@@ -18,15 +19,46 @@ $(document).ready(function(){
         let query = "https://www.googleapis.com/books/v1/volumes?q=";
         if (autofillFrom == "Name+Author") {
 
-            query += "intitle:" + bookName + "+inauthor:" + author;
+            // Build the warningID and warningMessage
             warningID = "#autofill-warning";
             warningMessage = "Check the book name and author are correct!";
 
+            // Get the book's name and author from the form
+            let bookName = $("#book_name").val();
+            let author = $("#author").val();
+
+            // Check if the book's name and author are filled in
+            if (bookName == "" || author == "") {
+
+                $(warningID).text("You must fill in the book name and author first!");
+                return;     
+            
+            }
+            
+            // build the query
+            query += "intitle:" + bookName + "+inauthor:" + author;
+
+
         } else if (autofillFrom == "ISBN") {
 
-            query += "isbn:" + ISBN;
+            // Build the warningID and warningMessage
             warningID = "#autofill-ISBN-warning";
             warningMessage = "Check the ISBN10 is correct!";
+
+            // Get the ISBN from the form
+            let ISBN = $("#ISBN").val();
+
+            // Check if the book's name and author are filled in
+            if (ISBN == "") {
+
+                $(warningID).text("You must fill in the ISBN first!");
+                return;
+
+            }
+
+            // build the query
+            query += "isbn:" + ISBN;
+
 
         }
 
@@ -60,7 +92,7 @@ $(document).ready(function(){
                 }
                 
                 // Find the purchase link from the ISBN10
-                let purchaseLink = "https://www.amazon.com/dp/" + ISBN;
+                let purchaseLink = "https://www.amazon.co.uk/dp/" + ISBN;
 
                 // Fill the book_name, img_url, purchase_link and description fields in the form
                 $("#book_name").val(title);
@@ -81,46 +113,13 @@ $(document).ready(function(){
 
     $("#autofill-fields").click(function() {
 
-        // Reset the autofill warning text
-        $("#autofill-warning").text("");
-        $("#autofill-ISBN-warning").text("");
-
-        // Get the book's name and author from the form
-        let bookName = $("#book_name").val();
-        let author = $("#author").val();
-
-        // Check if the book's name and author are filled in
-        if (bookName == "" || author == "") {
-
-            $("#autofill-warning").text("You must fill in the book name and author first!");
-
-        } else {
-
-            AutofillFromGoogleBooks("Name+Author", bookName, author, "");
-
-        }
+        AutofillFromGoogleBooks("Name+Author");
 
     });
 
     $("#autofill-ISBN").click(function() {
 
-        // Reset the autofill warning text
-        $("#autofill-ISBN-warning").text("");
-        $("#autofill-warning").text("");
-
-        // Get the book's name and author from the form
-        let ISBN = $("#ISBN").val();
-
-        // Check if the book's name and author are filled in
-        if (ISBN == "") {
-
-            $("#autofill-warning").text("You must fill in the ISBN first!");
-
-        } else {
-
-            AutofillFromGoogleBooks("ISBN", "", "", ISBN);
-
-        }
+        AutofillFromGoogleBooks("ISBN");
 
     });
 
