@@ -102,7 +102,7 @@ def login():
 
 
 def check_if_logged_in():
-    # Function that checks if a user is logged in 
+    # Function that checks if a user is logged in
     # and redirects them to the login page if they are not.
     if "user" not in session:
         return redirect(url_for('login'))
