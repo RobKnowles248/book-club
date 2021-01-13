@@ -119,8 +119,7 @@ def compute_average_score(book):
     return sum(scores) // len(scores)
 
 
-@app.route("/add_review", methods=["GET", "POST"])
-@app.route("/add_review/<book_name>", methods=["GET", "POST"])
+@app.route("/review/add", methods=["GET", "POST"])
 def add_review(book_name=None):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -165,7 +164,7 @@ def add_review(book_name=None):
     return render_template("add_review.html", books=books, book_name=book_name)
 
 
-@app.route("/edit_review/<book_id>", methods=["GET", "POST"])
+@app.route("/review/edit/<book_id>", methods=["GET", "POST"])
 def edit_review(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -190,7 +189,7 @@ def edit_review(book_id):
                 "edit_review.html", review=review, book=book)
 
 
-@app.route("/delete_review/<book_id>")
+@app.route("/review/delete/<book_id>")
 def delete_review(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -207,7 +206,7 @@ def delete_review(book_id):
             return redirect(url_for("book_page", book_id=book["_id"]))
 
 
-@app.route("/add_book", methods=["GET", "POST"])
+@app.route("/book/add", methods=["GET", "POST"])
 def add_book():
     if "user" not in session:
         return redirect(url_for('login'))
@@ -243,7 +242,7 @@ def add_book():
     return render_template("add_book.html")
 
 
-@app.route("/edit_book/<book_id>", methods=["GET", "POST"])
+@app.route("/book/edit/<book_id>", methods=["GET", "POST"])
 def edit_book(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -264,7 +263,7 @@ def edit_book(book_id):
     return render_template("edit_book.html", book=book)
 
 
-@app.route("/delete_book/<book_id>")
+@app.route("/book/delete/<book_id>")
 def delete_book(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -274,7 +273,7 @@ def delete_book(book_id):
     return redirect(url_for("index"))
 
 
-@app.route("/book_page/<book_id>")
+@app.route("/book/<book_id>")
 def book_page(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     return render_template("book_page.html", book=book)
