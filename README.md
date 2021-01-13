@@ -67,7 +67,9 @@ The testing of the site is documented in [testing.md](testing.md)
 
 ## Deployment
 
-The site was deployed using [Heroku](https://heroku.com/)
+The site was deployed on [Heroku](https://heroku.com/) and will automatically update upon new commits pushed to the github repository: [https://github.com/RobKnowles248/book-club](https://github.com/RobKnowles248/book-club).
+
+Since the environment variables stored in `env.py` were not pushed to git these were manually as as config variables on Heroku.
 
 ## Credits
 
