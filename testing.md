@@ -76,3 +76,8 @@
     - If the book name had been changed, then nothing was getting updated in the database as there was no book in the database with the new book name.
     - I fixed this by changing the POST method to update the book record according to it's `_id` field:
     ![Screenshot of line in POST method where book is updated according to _id](static/images/testing/book-id-search.png)
+
+- Bug with `add_book` page form submitting when autofill buttons are pressed:
+    - While testing the autofill buttons on the `add_book` page, I noticed that if all the fields were filled the form was submitted when clicking the autofill buttons, not just the submit button.
+    - After some googling, I discovered this was as I had not set the type of the autofill buttons so once I set their type attribute to `button`, the bug was fixed.
+    ![Screenshot of type="button" on autofill button](static/images/testing/type-button.png)
