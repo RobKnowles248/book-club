@@ -18,11 +18,11 @@
                     </div>
                     <!-- book image -->
                     <div class="col s12 m4">
-                        <img src="{{ book.img_url }}" alt="Cover of {{ book.book_name }}" class="responsive-img">
+                        <img src="{{ book.img_url }}" alt="Cover of {{ book.book_name }}" class="responsive-img top-margin">
                     </div>
                     <!-- author and about book text -->
                     <div class="col s12 m8">
-                        <h4>By {{ book.author }}</h4>
+                        <h4 class="top-margin">By {{ book.author }}</h4>
                         <p>{{ book.description }}</p>
                     </div>
                 </div>
@@ -40,13 +40,13 @@
                     <!-- edit book button -->
                     <div class="row top-margin center-align">
                         <div class="col s12 m6">
-                            <a href="{{ url_for('edit_book', book_id=book._id ) }}" class="btn-large teal darken-3 white-text">
+                            <a href="{{ url_for('edit_book', book_id=book._id ) }}" class="btn-large teal darken-3 white-text top-margin">
                                 <i class="fas fa-edit left"></i> Edit Book Details
                             </a>
                         </div>
                         <!-- delete book button -->
                         <div class="col s12 m6">
-                            <a href="{{ url_for('delete_book', book_id=book._id ) }}" class="btn-large red darken-4 white-text">
+                            <a href="{{ url_for('delete_book', book_id=book._id ) }}" class="btn-large red darken-4 white-text top-margin">
                                 <i class="fas fa-trash-alt left"></i> Delete Book
                             </a>
                         </div>
@@ -80,12 +80,12 @@
                                         </div>
                                         {% if review.review_author == session.user %}
                                             <div class="col s12 m6 center-align">
-                                                <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4">
+                                                <a href="{{ url_for('delete_review', book_id=book._id) }}" class="btn-small red darken-4 top-margin">
                                                     <i class="fas fa-trash-alt left"></i> Delete
                                                 </a>
                                             </div>
                                             <div class="col s12 m6 center-align">
-                                                <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3">
+                                                <a href="{{ url_for('edit_review', book_id=book._id) }}" class="btn-small teal darken-3 top-margin">
                                                     <i class="fas fa-edit left"></i> Edit
                                                 </a>
                                             </div>

@@ -67,6 +67,8 @@ The testing of the site is documented in [testing.md](testing.md)
 
 ## Deployment
 
+The site was deployed using [Heroku](https://heroku.com/)
+
 ## Credits
 
 ### Code
