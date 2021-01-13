@@ -31,6 +31,17 @@
             </div>
         </form>
     </div>
+    <!-- redirect button to sign up page -->
+    <div class="row top-margin">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel row center-align">
+                <h5 class="col s12">Not already a user? Sign up here:</h5>
+                <a href="{{ url_for('signup') }}" class="btn-large teal darken-3 top-margin">
+                    Sign Up <i class="fas fa-user-plus right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}

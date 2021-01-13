@@ -42,11 +42,22 @@
                 <!-- sign up button -->
                 <div class="row">
                     <button type="submit" class="col s12 btn-large teal darken-3">
-                        Sign Up <i class="fas fa-sign-in-alt"></i>
+                        Sign Up <i class="fas fa-user-plus"></i>
                     </button>
                 </div>
             </div>
         </form>
+    </div>
+    <!-- redirect button to login page -->
+    <div class="row top-margin">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel row center-align">
+                <h5 class="col s12">Already got an account? Login here:</h5>
+                <a href="{{ url_for('login') }}" class="btn-large teal darken-3 top-margin">
+                    Login <i class="fas fa-sign-in-alt right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
