@@ -22,8 +22,23 @@
                 <!-- Autofill Fields Button -->
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button class="teal darken-3 btn-large" id="autofill-fields"> <i class="fas fa-fill left"></i> Autofill other fields</button>
+                        <button class="teal darken-3 btn-large" id="autofill-fields"> <i class="fas fa-fill left"></i> Autofill from Name and Author</button>
                         <p class="red-text text-darken-4" id="autofill-warning"></p>
+                    </div>
+                </div>
+                <!-- ISBN input -->
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <i class="fas fa-barcode prefix teal-text text-darken-3"></i>
+                        <input id="ISBN" name="ISBN" type="number" class="validate" required>
+                        <label for="ISBN">ISBN10</label>
+                    </div>
+                </div>
+                <!-- Autofill Fields Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="teal darken-3 btn-large" id="autofill-ISBN"> <i class="fas fa-fill left"></i> Autofill from ISBN</button>
+                        <p class="red-text text-darken-4" id="autofill-ISBN-warning"></p>
                     </div>
                 </div>
                 <!-- Cover Image URL -->
