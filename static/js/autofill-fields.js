@@ -68,7 +68,13 @@ $(document).ready(function(){
                 $("#img_url").val(imgURL);
                 $("#purchase_link").val(purchaseLink);
                 $("#description").val(description);
-                $("#ISBN").val(ISBN);           
+                $("#ISBN").val(ISBN);
+                
+                if (autofillFrom == "Name+Author") {
+
+                    $(warningID).text("If this did not find the correct book, try searching by ISBN10 instead!");
+
+                }
             }
         });
     }
