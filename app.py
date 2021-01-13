@@ -19,7 +19,7 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/index")
+@app.route("/home")
 def index():
     books = list(mongo.db.books.find())
     return render_template("index.html", books=books)
@@ -120,6 +120,7 @@ def compute_average_score(book):
 
 
 @app.route("/review/add", methods=["GET", "POST"])
+@app.route("/review/add/<book_name>", methods=["GET", "POST"])
 def add_review(book_name=None):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -164,7 +165,7 @@ def add_review(book_name=None):
     return render_template("add_review.html", books=books, book_name=book_name)
 
 
-@app.route("/review/edit/<book_id>", methods=["GET", "POST"])
+@app.route("/review/<book_id>/edit", methods=["GET", "POST"])
 def edit_review(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -189,7 +190,7 @@ def edit_review(book_id):
                 "edit_review.html", review=review, book=book)
 
 
-@app.route("/review/delete/<book_id>")
+@app.route("/review/<book_id>/delete")
 def delete_review(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -242,7 +243,7 @@ def add_book():
     return render_template("add_book.html")
 
 
-@app.route("/book/edit/<book_id>", methods=["GET", "POST"])
+@app.route("/book/<book_id>/edit", methods=["GET", "POST"])
 def edit_book(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -263,7 +264,7 @@ def edit_book(book_id):
     return render_template("edit_book.html", book=book)
 
 
-@app.route("/book/delete/<book_id>")
+@app.route("/book/<book_id>/delete")
 def delete_book(book_id):
     if "user" not in session:
         return redirect(url_for('login'))
@@ -273,7 +274,7 @@ def delete_book(book_id):
     return redirect(url_for("index"))
 
 
-@app.route("/book/<book_id>")
+@app.route("/book/<book_id>/view")
 def book_page(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     return render_template("book_page.html", book=book)
