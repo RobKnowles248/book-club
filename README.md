@@ -47,7 +47,20 @@ As a user (looking to buy a book) I want:
  
 ### Existing Features
 
+- Home page showing all books in the database, along with their author, cover and average score.
+- Search bar on home page to search for a specific book.
+- Login and signup functionality for users of the site.
+- A page where users can add new reviews to the database. They can write about the book and score them out of 5.
+- A page where users can add a new book to the database.
+- Buttons on the `add_book` where a user can autofill the information for a book using the Google Books API, either from the book name and author, or the ISBN10.
+- A page for each book where the info for that book is displayed (title, author, cover image, description, average score)
+- A list of reviews for each book on the book page including score, review author and review text for each review.
+- Functionality to edit and delete a book and it's info if you added it to the database or are the admin.
+- Functionality to edit and delete a review if you wrote it or are the admin.
+
 ### Features Left to Implement
+
+- A profile page where users can see all the reviews they have written and edit and delete them.
 
 ## Technologies Used
 
