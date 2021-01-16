@@ -101,16 +101,10 @@ def login():
     return render_template("login.html")
 
 
-def check_if_logged_in():
-    # Function that checks if a user is logged in
-    # and redirects them to the login page if they are not.
-    if "user" not in session:
-        return redirect(url_for('login'))
-
-
 @app.route("/logout")
 def logout():
-    check_if_logged_in()
+    if "user" not in session:
+        return redirect(url_for('login'))
 
     # remove user from session cookies
     flash("Successfully logged out!")
@@ -128,7 +122,8 @@ def compute_average_score(book):
 @app.route("/review/add", methods=["GET", "POST"])
 @app.route("/review/add/<book_name>", methods=["GET", "POST"])
 def add_review(book_name=None):
-    check_if_logged_in()
+    if "user" not in session:
+        return redirect(url_for('login'))
 
     if request.method == "POST":
         # Find the book in the db
@@ -172,7 +167,8 @@ def add_review(book_name=None):
 
 @app.route("/review/<book_id>/edit", methods=["GET", "POST"])
 def edit_review(book_id):
-    check_if_logged_in()
+    if "user" not in session:
+        return redirect(url_for('login'))
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     for review in book["reviews"]:
@@ -196,7 +192,8 @@ def edit_review(book_id):
 
 @app.route("/review/<book_id>/delete")
 def delete_review(book_id):
-    check_if_logged_in()
+    if "user" not in session:
+        return redirect(url_for('login'))
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     for review in book["reviews"]:
@@ -247,7 +244,8 @@ def add_book():
 
 @app.route("/book/<book_id>/edit", methods=["GET", "POST"])
 def edit_book(book_id):
-    check_if_logged_in()
+    if "user" not in session:
+        return redirect(url_for('login'))
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     if request.method == "POST":
@@ -267,7 +265,8 @@ def edit_book(book_id):
 
 @app.route("/book/<book_id>/delete")
 def delete_book(book_id):
-    check_if_logged_in()
+    if "user" not in session:
+        return redirect(url_for('login'))
 
     mongo.db.books.remove({"_id": ObjectId(book_id)})
     flash("Book Successfully Deleted")
