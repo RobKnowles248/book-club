@@ -25,7 +25,6 @@ As a reviewer I want:
 - An intuitive form for writing my review so I can easily write a new review including:
     - Star system to score my review out of 5.
     - Large text area to write up my review.
-- A profile area where I can view the reviews I have written.
 - A way to edit the reviews I have written so I can change them if I notice mistakes or change my mind about something.
 - A way to delete reviews I no longer want to be on the website.
 
@@ -117,8 +116,6 @@ Since the environment variables stored in `env.py` were not pushed to git these 
 - The script in `signup-validation.js` for checking the passwords match on `signup.html` was adapted from [this jsfiddle](http://jsfiddle.net/SirusDoma/ayf832td/).
 - The code for the login and signup forms and methods was adapted from that used in the Code Institute Back End Development "Task Manager" miniproject.
 
-### Content
-
-### Media
-
 ### Acknowledgements
+
+Thanks to my mentor Akshat Garg for his help with building the project.
