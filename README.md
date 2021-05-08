@@ -54,6 +54,7 @@ As a user (looking to buy a book) I want:
 - Buttons on the `add_book` where a user can autofill the information for a book using the Google Books API, either from the book name and author, or the ISBN10.
 - A page for each book where the info for that book is displayed (title, author, cover image, description, average score)
 - A list of reviews for each book on the book page including score, review author and review text for each review.
+- An average score for each book that updates when a review is added or edited
 - Functionality to edit and delete a book and it's info if you added it to the database or are the admin.
 - Functionality to edit and delete a review if you wrote it or are the admin.
 
