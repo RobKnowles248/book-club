@@ -138,24 +138,23 @@ def add_review(book_name=None):
                     flash("You have already reviewed this book!")
                     return redirect(url_for("add_review"))
 
-            else:
-                # Store the new review data as a dictionary
-                new_review = {
-                    "score": int(request.form.get("stars")),
-                    "review_text": request.form.get("review_text"),
-                    "review_author": session["user"]
-                }
+            # Store the new review data as a dictionary
+            new_review = {
+                "score": int(request.form.get("stars")),
+                "review_text": request.form.get("review_text"),
+                "review_author": session["user"]
+            }
 
-                # Add the new review data to the dictionary we will update
-                book["reviews"].append(new_review)
+            # Add the new review data to the dictionary we will update
+            book["reviews"].append(new_review)
 
-                # Compute the new average score
-                book["average_score"] = compute_average_score(book)
+            # Compute the new average score
+            book["average_score"] = compute_average_score(book)
 
-                # Add the review data to the book's data in the db
-                mongo.db.books.update({"book_name": book["book_name"]}, book)
-                flash("Review Successfully Added!")
-                return redirect(url_for("index"))
+            # Add the review data to the book's data in the db
+            mongo.db.books.update({"book_name": book["book_name"]}, book)
+            flash("Review Successfully Added!")
+            return redirect(url_for("index"))
 
         else:
             flash("Book not found!")
