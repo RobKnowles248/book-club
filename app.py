@@ -136,7 +136,8 @@ def add_review(book_name=None):
             for review in book["reviews"]:
                 if review["review_author"] == session["user"]:
                     flash("You have already reviewed this book!")
-                    return redirect(url_for("add_review"))
+                    return redirect(
+                        url_for("edit_review", book_id=book["_id"]))
 
             # Store the new review data as a dictionary
             new_review = {
