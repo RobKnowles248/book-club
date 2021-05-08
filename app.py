@@ -209,7 +209,8 @@ def delete_review(book_id):
 
 @app.route("/book/add", methods=["GET", "POST"])
 def add_book():
-    check_if_logged_in()
+    if "user" not in session:
+        return redirect(url_for('login'))
 
     if request.method == "POST":
         # Check if the book already exists
