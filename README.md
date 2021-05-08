@@ -62,6 +62,32 @@ As a user (looking to buy a book) I want:
 
 - A profile page where users can see all the reviews they have written and edit and delete them.
 
+## Data Schema
+
+The database was created as a non-relational MongoDB database called "book_club". This database contains 2 collections called "books" (containing all data related to the books and reviews) and "users" (containing all data related to the users of the site).
+
+Items in the "users" collection where structured in the following way:
+- _id: The unique id for each user (ObjectId)
+- username: The user's unique username (string)
+- password: A hash of the user's password (string)
+- email: The user's email address (string)
+
+Items in the "books" collection were structured in the following way:
+- _id: The unique id for each book (ObjectId)
+- book_name: The name of the book (string)
+- author: The author of the book (string)
+- img_url: The url of the google books cover image for the book (string)
+- purchase_link: The url of the amazon link for the book generated from the book's ISBN (string)
+- average_score: The average score from the book's reviews (int)
+- added_by: The username of the user that added the book (string)
+- description: A description of the book (string)
+- reviews: An array containing an object for each of the book's reviews (Array)
+
+Each of the review objects in the reviews array were structured in the following way:
+- score: The score given to the book in the review (int)
+- review_text: The text of the review (string)
+- review_author: The username of the author of the review (string)
+
 ## Technologies Used
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML#:~:text=Hypertext%20Markup%20Language%20(HTML)%20is,scripting%20languages%20such%20as%20JavaScript.)
